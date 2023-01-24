@@ -108,4 +108,4 @@ if __name__ == '__main__':
     logger.log("*****************************************************")
     logger.log("Server running at harvester.{}:5000".format(config['domain']))
     webbrowser.open('http://harvester.{}:5000/'.format(config['domain']))
-    app.run()
+    app.run(host='0.0.0.0',port=5000)
