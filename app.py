@@ -108,6 +108,6 @@ if __name__ == '__main__':
     logger.log("CSGORoll reCAPTCHA Harvester | blic blic")
     logger.log("*****************************************************")
     logger.log("Server running at harvester.{}:5000".format(domain))
-    webbrowser.open('http://localhost:5000/')
+
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
