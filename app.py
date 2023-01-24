@@ -1,4 +1,5 @@
 from utils import Logger
+import os
 
 from flask import Flask, request, jsonify, render_template, redirect
 from flask_cors import CORS, cross_origin
@@ -108,4 +109,5 @@ if __name__ == '__main__':
     logger.log("*****************************************************")
     logger.log("Server running at harvester.{}:5000".format(config['domain']))
     webbrowser.open('http://harvester.{}:5000/'.format(config['domain']))
-    app.run(host='0.0.0.0',port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
