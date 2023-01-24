@@ -14,6 +14,9 @@ tokens = []
 
 logger = Logger()
 
+sitekey = "6LclF8sUAAAAAHJQQBoSzcZ02qfTSzXaHlffepXF"
+domain = "csgoroll.com"
+
 
 def manageTokens():
     while True:
@@ -41,7 +44,7 @@ log.setLevel(logging.ERROR)
 @app.route('/')
 @cross_origin()
 def index():
-    return render_template('index.html', sitekey=config['sitekey'], domain=config['domain'])
+    return render_template('index.html', sitekey=sitekey, domain=domain)
 
 
 @app.route('/api/submit', methods=['POST'])
@@ -101,13 +104,10 @@ def api_fetch_token():
 
 if __name__ == '__main__':
     threading.Thread(target=manageTokens).start()
-    with open('config.json') as file:
-        config = json.load(file)
-        file.close()
     logger.log("*****************************************************")
     logger.log("CSGORoll reCAPTCHA Harvester | blic blic")
     logger.log("*****************************************************")
-    logger.log("Server running at harvester.{}:5000".format(config['domain']))
-    webbrowser.open('http://harvester.{}:5000/'.format(config['domain']))
+    logger.log("Server running at harvester.{}:5000".format(domain))
+    webbrowser.open('http://harvester.{}:5000/'.format(domain))
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
