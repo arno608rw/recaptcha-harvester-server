@@ -44,7 +44,7 @@ log.setLevel(logging.ERROR)
 @app.route('/')
 @cross_origin()
 def index():
-    return render_template('index.html', sitekey=sitekey, domain=domain)
+    return render_template('index.html', sitekey=sitekey, domain=domain, tokens=api_count())
 
 
 @app.route('/api/submit', methods=['POST'])
@@ -108,6 +108,5 @@ if __name__ == '__main__':
     logger.log("CSGORoll reCAPTCHA Harvester | blic blic")
     logger.log("*****************************************************")
     logger.log("Server running at harvester.{}:5000".format(domain))
-
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    webbrowser.open('http://localhost:5000/'.format(domain))
+    app.run()
